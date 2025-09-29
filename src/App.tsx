@@ -1,11 +1,7 @@
 import {MessageCircle, Instagram, Music, Facebook} from 'lucide-react';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
-import YoutubeReel from "./components/YoutubeReel";
-import {ShortsCarousel} from "./Components/ShortsCarousel.tsx";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
-import HeroGroup from "./Components/HeroGroup.jsx";
+import YoutubeReel from './Components/YoutubeReel';
+import {ShortsCarousel} from "./Components/ShortsCarousel";
+import HeroGroup from "./Components/HeroGroup";
 
 function App() {
     /*const portfolioItems = [
@@ -93,7 +89,7 @@ function App() {
                         </p>*/}
 
                         {/* Video */}
-                        <div className="mt-12 flex justify-center mb-6">
+                        <div className="mt-36 flex justify-center mb-6">
                             <div className="w-full max-w-[360px] sm:max-w-[420px] md:max-w-[480px]">
                                 <YoutubeReel videoId="G_NgplpYPwY" autoplay mute/>
                             </div>
