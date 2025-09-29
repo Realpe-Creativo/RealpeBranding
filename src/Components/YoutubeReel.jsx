@@ -1,4 +1,3 @@
-// src/components/YoutubeReel.jsx
 export default function YoutubeReel({ videoId, autoplay = false }) {
     const params = new URLSearchParams({
         autoplay: autoplay ? "1" : "0",

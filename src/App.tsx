@@ -1,17 +1,21 @@
-import {Star, MessageCircle, Instagram, Music, Facebook} from 'lucide-react';
+import {MessageCircle, Instagram, Music, Facebook} from 'lucide-react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 import YoutubeReel from "./components/YoutubeReel";
 import {ShortsCarousel} from "./Components/ShortsCarousel.tsx";
-import HeroGroup from "./Components/HeroGroup";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
+import HeroGroup from "./Components/HeroGroup.jsx";
 
 function App() {
-    const portfolioItems = [
+    /*const portfolioItems = [
         {title: "M&O Únicos en Sabor", bg: "bg-yellow-400"},
         {title: "Bakup Digital", bg: "bg-gray-100"},
         {title: "NAOVI", bg: "bg-green-800"},
         {title: "GL Perfume", bg: "bg-amber-100"},
         {title: "Dr. Nicolás Vargas", bg: "bg-teal-800"},
         {title: "M&O Coffee", bg: "bg-yellow-400"}
-    ];
+    ];*/
 
     const reels = [
         "https://www.youtube.com/embed/g6LeS-LJ7Q4",
