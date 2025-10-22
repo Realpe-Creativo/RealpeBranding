@@ -1,7 +1,9 @@
-import {MessageCircle, Instagram, Music, Facebook} from 'lucide-react';
-import YoutubeReel from './Components/YoutubeReel';
+import {Instagram, Facebook, Globe} from "lucide-react";
+import {SiTiktok} from "react-icons/si";
 import {ShortsCarousel} from "./Components/ShortsCarousel";
 import HeroGroup from "./Components/HeroGroup";
+import React from "react";
+import LiquidWhatsappButton from "./Components/LiquidWhatsappButton";
 
 function App() {
     /*const portfolioItems = [
@@ -23,32 +25,52 @@ function App() {
     const heroes = [
         {
             // HERO Instagram (los textos van en la imagen)
-            imgMobile: "/hero01.png",
+            imgMobile: "/basico.jpg",
             imgDesktop: "/hero01.png",
             imgAlt: "Curso Instagram para negocios y marcas personales",
-            ctaText: "VER CURSO",
-            ctaHref: "#instagram",
-            ctaGradient: "from-[#6b66ff] to-[#d93aff]",      // gradiente del botón
+            ctaText: "CONTACTAR A REALPE",
+            ctaHref: "https://wa.me/573168524218?text=Hola%20Realpe!%20Estoy%20interesad%40%20en%20el%20paquete%20de%20dise%C3%B1o%20b%C3%A1sico",
+            ctaGradient: "from-[#f6f38c] to-[#f9b919]",      // gradiente del botón
             heightClass: "h-[78vh] lg:h-[86vh]",
             // En móvil: arriba al centro. En desktop: a la derecha centrado vertical
             buttonPosClass:
                 "justify-center items-start pt-6 md:pt-0 md:justify-end md:items-center",
             // Para desktop, separa un poco del borde derecho
+            backgroundColor: "bg-[#321c43]",
             containerClassName: "md:pr-2",
-            buttonClassName: "text-base md:text-lg",
+            buttonClassName: "text-base text-[#321c43] md:text-lg",
+            text_color: "text-[#321c43]",
         },
         {
             // Otro hero con su propio par de imágenes y botón con otros colores
-            imgMobile: "/hero02.png",
+            imgMobile: "/estandar.jpg",
             imgDesktop: "/hero02.png",
             imgAlt: "Workshop Ads 360",
-            ctaText: "Reserva tu cupo",
-            ctaHref: "#ads360",
-            ctaGradient: "from-[#0017ff] to-[#00e3ff]",
-            heightClass: "h-[70vh] lg:h-[82vh]",
+            ctaText: "CONTACTAR A REALPE",
+            ctaHref: "https://wa.me/573168524218?text=Hola%20Realpe!%20Estoy%20interesad%40%20en%20el%20paquete%20de%20dise%C3%B1o%20est%C3%A1ndar",
+            ctaGradient: "from-[#c18cf6] to-[#321c43]",
+            heightClass: "h-[78vh] lg:h-[86vh]",
             buttonPosClass:
                 "justify-center items-start pt-8 md:pt-0 md:justify-start md:items-center",
             containerClassName: "md:pl-16",
+            backgroundColor: "bg-[#f9b919]",
+            buttonClassName: "text-base text-[#ffff] md:text-lg",
+            text_color: "text-[#ffff]",
+        },
+        {
+            // Otro hero con su propio par de imágenes y botón con otros colores
+            imgMobile: "/premium.jpg",
+            imgDesktop: "/hero02.png",
+            imgAlt: "Workshop Ads 360",
+            ctaText: "CONTACTAR A REALPE",
+            ctaHref: "https://wa.me/573168524218?text=Hola%20Realpe!%20Estoy%20interesad%40%20en%20el%20paquete%20de%20dise%C3%B1o%20premium",
+            ctaGradient: "from-[#f6f38c] to-[#f9b919]",
+            heightClass: "h-[78vh] lg:h-[86vh]",
+            buttonPosClass:
+                "justify-center items-start pt-8 md:pt-0 md:justify-start md:items-center",
+            containerClassName: "md:pl-16",
+            backgroundColor: "bg-[#321c43]",
+            buttonClassName: "text-base text-[#321c43] md:text-lg",
         },
     ];
 
@@ -57,24 +79,18 @@ function App() {
 
             {/* Content */}
             <div className="relative z-10 text-white">
-                {/* Hero Section */}
                 {/* Header con imágenes full width */}
-                <header className="w-full">
-                    {/* Imagen responsive */}
+                <header className="w-full bg-[#321c43]">
                     <picture>
-                        {/* Imagen para escritorio */}
                         <source media="(min-width: 768px)" srcSet="/header_desktop.png"/>
-                        {/* Imagen para móvil */}
                         <img
-                            src="/header_mobile.png"
+                            src="/portada_movil.jpg"
                             alt="Header"
                             className="w-full h-auto object-cover"
                         />
                     </picture>
 
-                    {/* Contenido encima si lo necesitas */}
-                    <div className="container mx-auto px-4 py-12 md:py-20 text-center text-white relative -mt-20 md:-mt-40">
-                        {/* Logo */}
+                    <div className="container mx-auto md:py-24 text-center text-white relative">
                         {/*<div className="flex items-center justify-center">
                             <img
                                 src="/logo.png"
@@ -83,17 +99,18 @@ function App() {
                             />
                         </div>*/}
 
-                        {/* Subtitle
-                        <p className="text-lg md:text-xl opacity-90">
-                            LAS MARCAS QUE INSPIRAN COMIENZA CON UN BUEN LOGO
-                        </p>*/}
 
-                        {/* Video */}
-                        <div className="mt-36 flex justify-center mb-6">
+                        <img
+                            src="/hero_movil.jpg"
+                            alt="hero"
+                            className="w-full h-full"
+                        />
+
+                        {/*<div className="mt-36 flex justify-center mb-6">
                             <div className="w-full max-w-[360px] sm:max-w-[420px] md:max-w-[480px]">
                                 <YoutubeReel videoId="G_NgplpYPwY" autoplay mute/>
                             </div>
-                        </div>
+                        </div>*/}
                     </div>
                 </header>
 
@@ -126,7 +143,7 @@ function App() {
                     </div>
                 </div>*/}
 
-                <section className="mt-8 w-full ">
+                <section className="w-full ">
                     <ShortsCarousel
                         shorts={reels}
                         mobileWidthClass="w-[78%]"
@@ -134,44 +151,63 @@ function App() {
                     />
                 </section>
 
-                {/* CTA Section */}
-                <div className="container mx-auto px-4 py-12 md:py-20 text-center">
-                    <div className="max-w-4xl mx-auto">
-                        <p className="text-xl md:text-2xl mb-6 leading-relaxed">
-                            No se trata solo de un logo. Se trata de crear una marca con<br/>
-                            identidad, personalidad y propósito.
-                        </p>
+                {/* Footer */}
+                <footer className="container mx-auto mt-12 px-4 py-8 bg-cover bg-center bg-no-repeat"
+                        style={{ backgroundImage: "url('/fondo.jpg')" }}>
+                    <div className="container mx-auto px-4 py-6 md:py-20 text-center">
+                        <div className="w-full mx-auto">
 
-                        <p className="text-xl md:text-2xl mb-8 leading-relaxed">
-                            Una marca que conecte, que inspire y que venda.
-                        </p>
-
-                        <h3 className="text-2xl md:text-3xl font-bold text-yellow-300 mb-12">
-                            ¿Listo para construir una<br/>
-                            marca que deje huella?
-                        </h3>
-
-                        <button
-                            className="bg-purple-700 hover:bg-purple-800 text-white font-bold py-4 px-8 rounded-full flex items-center gap-3 mx-auto mb-8 transition-all duration-300 transform hover:scale-105">
-                            <MessageCircle className="w-6 h-6"/>
-                            CONTÁCTANOS
-                        </button>
-
-                        <div className="text-sm opacity-90">
-                            <p>Respuesta en menos de 24 horas.</p>
-                            <p>Cupos limitados por mes.</p>
+                            <LiquidWhatsappButton
+                                ctaHref="https://wa.me/573168524218?text=Hola%20Realpe!%20Estoy%20interesad%40%20en%20dise%C3%B1ar%20la%20marca%20de%20mi%20empresa"
+                                ctaText="CONTACTAR A REALPE"
+                                ctaGradient="from-[#f6f38c] to-[#f9b919]" // gradiente del botón (igual que antes)
+                                startColor="#25D366"                       // color inicial blobs
+                                endColor="#128C7E"                         // color final blobs
+                                buttonClassName="text-base text-[#321c43] md:text-lg mb-6"
+                                textColor="text-[#321c43]"
+                            />
                         </div>
                     </div>
-                </div>
+                    <div className="flex justify-center mb-6 gap-8">
+                        {/* Instagram */}
+                        <a
+                            href="https://www.instagram.com/_realpe?igsh=cXliMzAwcDU4NnVn"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-white hover:text-pink-500 transition-colors duration-300"
+                        >
+                            <Instagram className="w-8 h-8"/>
+                        </a>
 
-                {/* Footer */}
-                <footer className="container mx-auto px-4 py-8">
-                    <div className="flex justify-center gap-8">
-                        <Instagram
-                            className="w-8 h-8 hover:text-pink-400 cursor-pointer transition-colors duration-300"/>
-                        <Music className="w-8 h-8 hover:text-pink-400 cursor-pointer transition-colors duration-300"/>
-                        <Facebook
-                            className="w-8 h-8 hover:text-blue-400 cursor-pointer transition-colors duration-300"/>
+                        {/* TikTok */}
+                        <a
+                            href="https://www.tiktok.com/@realpe_co?_t=ZS-90lmlpyfz9N&_r=1"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-white hover:text-black transition-colors duration-300"
+                        >
+                            <SiTiktok className="w-8 h-8"/>
+                        </a>
+
+                        {/* Facebook */}
+                        <a
+                            href="https://www.facebook.com/share/1EEBosZB7t/?mibextid=wwXIfr"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-white hover:text-blue-500 transition-colors duration-300"
+                        >
+                            <Facebook className="w-8 h-8"/>
+                        </a>
+
+                        {/* Página web */}
+                        <a
+                            href="https://realpeco.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-white hover:text-green-500 transition-colors duration-300"
+                        >
+                            <Globe className="w-8 h-8"/>
+                        </a>
                     </div>
                 </footer>
             </div>

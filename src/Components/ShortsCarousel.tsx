@@ -100,10 +100,7 @@ export const ShortsCarousel: React.FC<ShortsCarouselProps> = ({
     if (!shorts?.length) return null;
 
     return (
-        <div className={`relative mx-auto ${maxWidthClass}`}>
-            <h2 className="text-3xl text-center font-dunkin mb-6">
-                Mira como trasformamos a estas empresas
-            </h2>
+        <div className={`relative mt-12 mx-auto ${maxWidthClass}`}>
 
             <div className="relative">
                 {/* track con gutter para flechas si usas botones fuera */}

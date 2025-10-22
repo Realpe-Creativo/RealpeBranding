@@ -1,3 +1,75 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Halo que late por debajo del botón */
+.cta-pulse {
+    position: relative;
+    isolation: isolate;           /* para controlar el z-index del pseudo-elemento */
+}
+
+.cta-pulse::after,
+.cta-pulse::before {
+    content: "";
+    position: absolute;
+    inset: 0;                     /* toma el tamaño del botón */
+    border-radius: 9999px;
+    z-index: 0;                   /* detrás del contenido */
+    pointer-events: none;
+}
+
+/* Halo externo difuso */
+.cta-pulse::after {
+    box-shadow: 0 0 0 0 rgba(14, 243, 99, 0.45);
+    animation: pulseGlow 1.8s ease-in-out infinite;
+}
+
+/* Segundo halo sutil para más “profundidad” */
+.cta-pulse::before {
+    box-shadow: 0 0 0 0 rgba(18, 140, 126, 0.35);
+    animation: pulseGlow2 2.2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%   { transform: scale(1);    opacity: 0.7; box-shadow: 0 0 0 0 rgba(37,211,102,0.45); }
+    60%  { transform: scale(1.14); opacity: 0.15; box-shadow: 0 0 24px 14px rgba(5, 239, 94, 0.15); }
+    100% { transform: scale(1);    opacity: 0;   box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+}
+@keyframes pulseGlow2 {
+    0%   { transform: scale(1);    opacity: 0.5; box-shadow: 0 0 0 0 rgba(18,140,126,0.35); }
+    60%  { transform: scale(1.18); opacity: 0.12; box-shadow: 0 0 28px 18px rgba(18,140,126,0.12); }
+    100% { transform: scale(1);    opacity: 0;   box-shadow: 0 0 0 0 rgba(18,140,126,0); }
+}
+
+/* Botón con “olas” tipo gota de agua */
+.btn-water-wave {
+    animation: waterWobble 3.2s ease-in-out infinite;
+    transform-origin: 50% 50%;
+    will-change: transform;
+}
+
+/* Más intenso al pasar el mouse (opcional) */
+.btn-water-wave:hover {
+    animation-duration: 2.4s;
+}
+
+/* Respeto a usuarios con reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+    .btn-water-wave {
+        animation: none;
+    }
+}
+
+/* Keyframes: combina leve scaleX/scaleY + translate + rotate
+   para simular el bamboleo ondulante de una gota */
+@keyframes waterWobble {
+    0%   { transform: translate(0, 0)       rotate(0deg)    scale(1,    1);     }
+    12%  { transform: translate(1px, -1px)  rotate(0.35deg) scale(1.015,0.985); }
+    25%  { transform: translate(2px, 0px)   rotate(0.7deg)  scale(0.995,1.005); }
+    37%  { transform: translate(1px, 1px)   rotate(0.35deg) scale(1.01, 0.99);  }
+    50%  { transform: translate(0, 0)       rotate(0deg)    scale(1.02, 0.98);  }
+    62%  { transform: translate(-1px, 1px)  rotate(-0.35deg)scale(1.005,0.995); }
+    75%  { transform: translate(-2px, 0px)  rotate(-0.7deg) scale(0.99, 1.01);  }
+    88%  { transform: translate(-1px,-1px)  rotate(-0.35deg)scale(1.01, 0.99);  }
+    100% { transform: translate(0, 0)       rotate(0deg)    scale(1,    1);     }
+}
