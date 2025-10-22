@@ -10,6 +10,7 @@ export default function Hero({
                                ctaText = "Ver curso",
                                ctaHref = "#",
                                ctaGradient = "from-indigo-500 to-fuchsia-500",
+                               aspectClasses = "aspect-[9/16] md:aspect-[16/9]",
                                heightClass = "h-[72vh] lg:h-[82vh]",
                                buttonClassName = "",
                                containerClassName = "",
@@ -19,7 +20,7 @@ export default function Hero({
   return (
       <section className={`w-full ${backgroundColor} ${containerClassName}`}>
         {/* Imagen hero */}
-        <div className={`w-full overflow-hidden ${heightClass}`}>
+        <div className={`w-full overflow-hidden aspect-[9/16] md:aspect-[16/9]`}>
           <picture>
             <source media="(min-width: 1024px)" srcSet={imgDesktop}/>
             <img
