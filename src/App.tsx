@@ -49,7 +49,7 @@ function App() {
             ctaText: "CONTACTAR A REALPE",
             ctaHref: "https://wa.me/573168524218?text=Hola%20Realpe!%20Estoy%20interesad%40%20en%20el%20paquete%20de%20dise%C3%B1o%20est%C3%A1ndar",
             ctaGradient: "from-[#c18cf6] to-[#321c43]",
-            heightClass: "h-[78vh] lg:h-[86vh]",
+            heightClass: "h-[80vh] lg:h-[80vh]",
             buttonPosClass:
                 "justify-center items-start pt-8 md:pt-0 md:justify-start md:items-center",
             containerClassName: "md:pl-16",
