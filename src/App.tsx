@@ -26,7 +26,7 @@ function App() {
         {
             // HERO Instagram (los textos van en la imagen)
             imgMobile: "/basico.jpg",
-            imgDesktop: "/hero01.png",
+            imgDesktop: "/basico.jpg",
             imgAlt: "Curso Instagram para negocios y marcas personales",
             ctaText: "CONTACTAR A REALPE",
             ctaHref: "https://wa.me/573168524218?text=Hola%20Realpe!%20Estoy%20interesad%40%20en%20el%20paquete%20de%20dise%C3%B1o%20b%C3%A1sico",
@@ -44,7 +44,7 @@ function App() {
         {
             // Otro hero con su propio par de imágenes y botón con otros colores
             imgMobile: "/estandar.jpg",
-            imgDesktop: "/hero02.png",
+            imgDesktop: "/estandar.jpg",
             imgAlt: "Workshop Ads 360",
             ctaText: "CONTACTAR A REALPE",
             ctaHref: "https://wa.me/573168524218?text=Hola%20Realpe!%20Estoy%20interesad%40%20en%20el%20paquete%20de%20dise%C3%B1o%20est%C3%A1ndar",
@@ -60,7 +60,7 @@ function App() {
         {
             // Otro hero con su propio par de imágenes y botón con otros colores
             imgMobile: "/premium.jpg",
-            imgDesktop: "/hero02.png",
+            imgDesktop: "/premium.jpg",
             imgAlt: "Workshop Ads 360",
             ctaText: "CONTACTAR A REALPE",
             ctaHref: "https://wa.me/573168524218?text=Hola%20Realpe!%20Estoy%20interesad%40%20en%20el%20paquete%20de%20dise%C3%B1o%20premium",
@@ -82,7 +82,7 @@ function App() {
                 {/* Header con imágenes full width */}
                 <header className="w-full bg-[#321c43]">
                     <picture>
-                        <source media="(min-width: 768px)" srcSet="/header_desktop.png"/>
+                        <source media="(min-width: 768px)" srcSet="/portada_movil.jpg"/>
                         <img
                             src="/portada_movil.jpg"
                             alt="Header"
