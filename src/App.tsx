@@ -6,6 +6,8 @@ import React from "react";
 import LiquidWhatsappButton from "./Components/LiquidWhatsappButton";
 
 function App() {
+    const COUNTRY = import.meta.env.VITE_COUNTRY;
+    const isUSA = COUNTRY === "USA";
 
     const reels = [
         "https://www.youtube.com/embed/g6LeS-LJ7Q4",
@@ -16,30 +18,28 @@ function App() {
 
     const heroes = [
         {
-            // HERO Instagram (los textos van en la imagen)
-            imgMobile: "/basico.jpg",
-            imgDesktop: "/basico_desktop.jpg",
+            imgMobile: isUSA ? "/usa/basico.jpg" : "/basico.jpg",
+            imgDesktop: isUSA ? "/usa/basico_desktop.jpg" : "/basico_desktop.jpg",
             imgAlt: "Curso Instagram para negocios y marcas personales",
             ctaText: "CONTACTAR A REALPE",
-            ctaHref: "https://wa.me/573168524218?text=Hola%20Realpe!%20Estoy%20interesad%40%20en%20el%20paquete%20de%20dise%C3%B1o%20b%C3%A1sico",
-            ctaGradient: "from-[#f6f38c] to-[#f9b919]",      // gradiente del botón
+            ctaHref:
+                "https://wa.me/573168524218?text=Hola%20Realpe!%20Estoy%20interesad%40%20en%20el%20paquete%20de%20dise%C3%B1o%20b%C3%A1sico",
+            ctaGradient: "from-[#f6f38c] to-[#f9b919]", // gradiente del botón
             heightClass: "h-[78vh] lg:h-[86vh]",
-            // En móvil: arriba al centro. En desktop: a la derecha centrado vertical
             buttonPosClass:
                 "justify-center items-start pt-6 md:pt-0 md:justify-end md:items-center",
-            // Para desktop, separa un poco del borde derecho
             backgroundColor: "bg-[#2e1b3b]",
             containerClassName: "",
             buttonClassName: "text-base text-[#321c43] md:text-lg",
             text_color: "text-[#321c43]",
         },
         {
-            // Otro hero con su propio par de imágenes y botón con otros colores
-            imgMobile: "/estandar.jpg",
-            imgDesktop: "/estandar_desktop.jpg",
+            imgMobile: isUSA ? "/usa/estandar.jpg" : "/estandar.jpg",
+            imgDesktop: isUSA ? "/usa/estandar_desktop.jpg" : "/estandar_desktop.jpg",
             imgAlt: "Workshop Ads 360",
             ctaText: "CONTACTAR A REALPE",
-            ctaHref: "https://wa.me/573168524218?text=Hola%20Realpe!%20Estoy%20interesad%40%20en%20el%20paquete%20de%20dise%C3%B1o%20est%C3%A1ndar",
+            ctaHref:
+                "https://wa.me/573168524218?text=Hola%20Realpe!%20Estoy%20interesad%40%20en%20el%20paquete%20de%20dise%C3%B1o%20est%C3%A1ndar",
             ctaGradient: "from-[#c18cf6] to-[#321c43]",
             heightClass: "h-[80vh] lg:h-[80vh]",
             buttonPosClass:
@@ -51,11 +51,12 @@ function App() {
         },
         {
             // Otro hero con su propio par de imágenes y botón con otros colores
-            imgMobile: "/premium.jpg",
-            imgDesktop: "/premium_desktop.jpg",
+            imgMobile: isUSA ? "/usa/premium.jpg" : "/premium.jpg",
+            imgDesktop: isUSA ? "/usa/premium_desktop.jpg" : "/premium_desktop.jpg",
             imgAlt: "Workshop Ads 360",
             ctaText: "CONTACTAR A REALPE",
-            ctaHref: "https://wa.me/573168524218?text=Hola%20Realpe!%20Estoy%20interesad%40%20en%20el%20paquete%20de%20dise%C3%B1o%20premium",
+            ctaHref:
+                "https://wa.me/573168524218?text=Hola%20Realpe!%20Estoy%20interesad%40%20en%20el%20paquete%20de%20dise%C3%B1o%20premium",
             ctaGradient: "from-[#f6f38c] to-[#f9b919]",
             heightClass: "h-[78vh] lg:h-[86vh]",
             buttonPosClass:
