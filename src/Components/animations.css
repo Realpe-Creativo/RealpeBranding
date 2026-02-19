@@ -1,0 +1,83 @@
+/* =========================================
+   SLIDE STACK (VERTICAL 9:16)
+   ========================================= */
+
+.slide-stack-wrapper,
+.slide-stack-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Stack vertical */
+.slide-stack {
+    position: relative;
+    width: min(360px, calc(100vw - 32px));
+    max-width: 360px;
+    aspect-ratio: 9 / 16;         /* 👈 clave: vertical */
+    margin-inline: auto;
+}
+
+/* Imágenes */
+.slide-stack__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;            /* 👈 clave: se ve como foto/video */
+    border-radius: 18px;
+    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.22);
+    user-select: none;
+    cursor: pointer;
+    transition: transform 0.35s ease, opacity 0.25s ease;
+    will-change: transform;
+}
+
+/* Capas (fondo → frente) */
+.slide-stack__img--0 {
+    transform: translate(-18px, 16px) rotate(-8deg) scale(0.98);
+    opacity: 0.75;
+}
+
+.slide-stack__img--1 {
+    transform: translate(18px, 12px) rotate(7deg) scale(0.99);
+    opacity: 0.82;
+}
+
+.slide-stack__img--2 {
+    transform: translate(-8px, 7px) rotate(-3deg);
+    opacity: 0.9;
+}
+
+.slide-stack__img--3 {
+    transform: translate(10px, 5px) rotate(3deg);
+    opacity: 0.96;
+}
+
+/* Frente */
+.slide-stack__img--4 {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+}
+
+/* Hover (solo escritorio) */
+@media (hover: hover) and (pointer: fine) {
+    .slide-stack:hover .slide-stack__img--0 {
+        transform: translate(-26px, 22px) rotate(-12deg) scale(0.98);
+    }
+    .slide-stack:hover .slide-stack__img--1 {
+        transform: translate(26px, 18px) rotate(11deg) scale(0.99);
+    }
+}
+
+/* Mobile: más pequeño + menos desborde */
+@media (max-width: 480px) {
+    .slide-stack {
+        width: min(300px, calc(100vw - 40px));
+    }
+
+    .slide-stack__img--0 { transform: translate(-10px, 10px) rotate(-5deg); }
+    .slide-stack__img--1 { transform: translate(10px, 9px) rotate(5deg); }
+    .slide-stack__img--2 { transform: translate(-6px, 6px) rotate(-3deg); }
+    .slide-stack__img--3 { transform: translate(6px, 5px) rotate(3deg); }
+}

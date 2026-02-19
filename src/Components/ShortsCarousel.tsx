@@ -1,5 +1,5 @@
-import React, {useEffect, useMemo, useState} from 'react';
-import {ChevronLeft, ChevronRight, Play} from 'lucide-react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
 
 interface ShortsCarouselProps {
     shorts: string[];
@@ -7,7 +7,7 @@ interface ShortsCarouselProps {
     /** ancho máximo del reel en pantallas angostas */
     mobileMaxWidthClass?: string; // ej: "max-w-[300px]" o "max-w-[260px]"
     /** ancho relativo del reel en pantallas angostas (por si prefieres vw) */
-    mobileWidthClass?: string;    // ej: "w-[82%]" o "w-[75%]"
+    mobileWidthClass?: string; // ej: "w-[82%]" o "w-[75%]"
 }
 
 type Provider = 'youtube' | 'tiktok' | 'other';
@@ -87,13 +87,35 @@ export const ShortsCarousel: React.FC<ShortsCarouselProps> = ({
     const [currentIndex, setCurrentIndex] = useState(0);
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-    const maxIndex = useMemo(
-        () => Math.max(shorts.length - itemsPerView, 0),
-        [shorts.length, itemsPerView]
-    );
+    const maxIndex = useMemo(() => Math.max(shorts.length - itemsPerView, 0), [shorts.length, itemsPerView]);
 
-    const nextSlide = () => setCurrentIndex((p) => (p >= maxIndex ? 0 : p + 1));
-    const prevSlide = () => setCurrentIndex((p) => (p <= 0 ? maxIndex : p - 1));
+    const isDesktop = itemsPerView > 1;
+
+    /**
+     * Regla:
+     * - Mobile: SIEMPRE habilitado (scroll + flechas)
+     * - Desktop: habilitado solo si hay > 4
+     */
+    const desktopCarouselEnabled = !isDesktop || shorts.length > 4;
+    const showArrows = !isDesktop || shorts.length > 4;
+
+    // Si en desktop no está habilitado, reseteamos para evitar quedarse "corridos"
+    useEffect(() => {
+        if (!desktopCarouselEnabled) {
+            setCurrentIndex(0);
+            setActiveIndex(null);
+        }
+    }, [desktopCarouselEnabled]);
+
+    const nextSlide = () => {
+        if (!desktopCarouselEnabled) return;
+        setCurrentIndex((p) => (p >= maxIndex ? 0 : p + 1));
+    };
+
+    const prevSlide = () => {
+        if (!desktopCarouselEnabled) return;
+        setCurrentIndex((p) => (p <= 0 ? maxIndex : p - 1));
+    };
 
     const transform = `translateX(-${(currentIndex * 100) / itemsPerView}%)`;
 
@@ -101,34 +123,35 @@ export const ShortsCarousel: React.FC<ShortsCarouselProps> = ({
 
     return (
         <div className={`relative mt-12 mx-auto ${maxWidthClass}`}>
-
             <div className="relative">
-                {/* track con gutter para flechas si usas botones fuera */}
                 <div className="overflow-hidden rounded-2xl">
                     <div
-                        className="flex transition-transform duration-500 ease-in-out px-2 sm:px-4 lg:px-6 gap-2 sm:gap-4 lg:gap-6"
-                        style={{ transform }}
+                        className="flex transition-transform duration-500 ease-in-out px-2 sm:px-4 lg:px-6 gap-2 sm:gap-4 lg:gap-3 lg:justify-center"
+                        style={{ transform: desktopCarouselEnabled ? transform : 'none' }}
                     >
                         {shorts.map((url, index) => {
                             const provider = getProvider(url);
                             const isActive = index === activeIndex;
                             const embedSrc =
-                                provider === 'youtube'
-                                    ? getYouTubeEmbed(url)
-                                    : provider === 'tiktok'
-                                        ? getTikTokEmbed(url)
-                                        : null;
+                                provider === 'youtube' ? getYouTubeEmbed(url) : provider === 'tiktok' ? getTikTokEmbed(url) : null;
                             const poster = provider === 'youtube' ? getYouTubeThumb(url) : null;
 
                             return (
                                 <div
                                     key={index}
-                                    className={`flex-shrink-0 ${itemsPerView === 1 ? 'w-full' : 'w-1/3'}`}
+                                    className={`
+                    flex-shrink-0
+                    ${itemsPerView === 1 ? 'w-full' : 'w-1/3'}
+                    lg:w-[260px] lg:flex-none
+                  `}
                                 >
-                                    {/* 👇 Wrapper interno:
-                      - En pantallas angostas: limita ancho (w-[82%] + max-w-[300px]) y centra
-                      - En >= sm: ocupa 100% (se desactiva el límite) */}
-                                    <div className={`mx-auto ${mobileWidthClass} ${mobileMaxWidthClass} sm:w-full sm:max-w-none`}>
+                                    <div
+                                        className={`
+                      mx-auto ${mobileWidthClass} ${mobileMaxWidthClass}
+                      sm:w-full sm:max-w-none
+                      lg:mx-0 lg:w-full lg:max-w-none
+                    `}
+                                    >
                                         <div className="relative aspect-[9/16] overflow-hidden rounded-2xl bg-black/5 shadow-sm">
                                             {isActive && embedSrc ? (
                                                 <iframe
@@ -156,19 +179,18 @@ export const ShortsCarousel: React.FC<ShortsCarouselProps> = ({
                                                         />
                                                     ) : (
                                                         <div className="w-full h-full flex items-center justify-center bg-gray-200">
-                              <span className="text-sm text-gray-600">
-                                {provider === 'tiktok' ? 'TikTok' : 'Short'}
-                              </span>
+                                                            <span className="text-sm text-gray-600">{provider === 'tiktok' ? 'TikTok' : 'Short'}</span>
                                                         </div>
                                                     )}
-                                                    <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity"/>
+                                                    <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity" />
                                                     <div className="absolute inset-0 flex items-center justify-center">
                                                         <div className="rounded-full p-4 bg-[#f18500]/95 shadow group-hover:scale-110 transition-transform">
-                                                            <Play className="w-6 h-6"/>
+                                                            <Play className="w-6 h-6" />
                                                         </div>
                                                     </div>
                                                 </button>
                                             )}
+
                                             <div className="absolute top-2 right-2 text-[11px] px-2 py-1 rounded bg-black/60 text-white">
                                                 {provider === 'youtube' ? 'YouTube' : provider === 'tiktok' ? 'TikTok' : 'Video'}
                                             </div>
@@ -180,10 +202,11 @@ export const ShortsCarousel: React.FC<ShortsCarouselProps> = ({
                     </div>
                 </div>
 
-                {shorts.length > itemsPerView && (
+                {showArrows && (
                     <>
                         <button
                             onClick={() => {
+                                if (!desktopCarouselEnabled) return;
                                 const next = currentIndex <= 0 ? maxIndex : currentIndex - 1;
                                 if (activeIndex !== null && (activeIndex < next || activeIndex >= next + itemsPerView)) {
                                     setActiveIndex(null);
@@ -191,9 +214,9 @@ export const ShortsCarousel: React.FC<ShortsCarouselProps> = ({
                                 prevSlide();
                             }}
                             className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2
-                         bg-[#f18500]/60 hover:bg-[#f18500]/80 text-white
-                         p-3 sm:p-4 rounded-full transition-all duration-200
-                         focus:outline-none focus:ring-2 focus:ring-white shadow-lg"
+                bg-[#f18500]/60 hover:bg-[#f18500]/80 text-white
+                p-3 sm:p-4 rounded-full transition-all duration-200
+                focus:outline-none focus:ring-2 focus:ring-white shadow-lg"
                             aria-label="Anterior"
                         >
                             <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -201,6 +224,7 @@ export const ShortsCarousel: React.FC<ShortsCarouselProps> = ({
 
                         <button
                             onClick={() => {
+                                if (!desktopCarouselEnabled) return;
                                 const next = currentIndex >= maxIndex ? 0 : currentIndex + 1;
                                 if (activeIndex !== null && (activeIndex < next || activeIndex >= next + itemsPerView)) {
                                     setActiveIndex(null);
@@ -208,9 +232,9 @@ export const ShortsCarousel: React.FC<ShortsCarouselProps> = ({
                                 nextSlide();
                             }}
                             className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2
-                         bg-[#f18500]/60 hover:bg-[#f18500]/80 text-white
-                         p-3 sm:p-4 rounded-full transition-all duration-200
-                         focus:outline-none focus:ring-2 focus:ring-white shadow-lg"
+                bg-[#f18500]/60 hover:bg-[#f18500]/80 text-white
+                p-3 sm:p-4 rounded-full transition-all duration-200
+                focus:outline-none focus:ring-2 focus:ring-white shadow-lg"
                             aria-label="Siguiente"
                         >
                             <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />

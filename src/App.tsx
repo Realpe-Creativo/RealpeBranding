@@ -2,9 +2,13 @@ import {Instagram, Facebook, Globe} from "lucide-react";
 import {SiTiktok} from "react-icons/si";
 import {ShortsCarousel} from "./Components/ShortsCarousel";
 import HeroGroup from "./Components/HeroGroup";
-import React from "react";
+import VideoVertical from "./Components/VideoVertical";
+import React, {useRef} from "react";
 import LiquidWhatsappButton from "./Components/LiquidWhatsappButton";
+// @ts-ignore
+import SlideStackImage from "./components/SlideStackImage";
 
+// @ts-ignore
 function App() {
     const COUNTRY = import.meta.env.VITE_COUNTRY;
     const isUSA = COUNTRY === "USA";
@@ -16,12 +20,18 @@ function App() {
         "https://www.youtube.com/embed/f2Vvr2a0xTQ",
     ];
 
+    const premiumRef = useRef(null);
+
+    const scrollToPremium = () => {
+        premiumRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+
     const heroes = [
         {
             imgMobile: isUSA ? "/usa/basico.jpg" : "/basico.jpg",
             imgDesktop: isUSA ? "/usa/basico_desktop.jpg" : "/basico_desktop.jpg",
             imgAlt: "Curso Instagram para negocios y marcas personales",
-            ctaText: "CONTACTAR A REALPE",
+            ctaText: "QUIERO EL BÁSICO",
             ctaHref:
                 "https://wa.me/573168524218?text=Hola%20Realpe!%20Estoy%20interesad%40%20en%20el%20paquete%20de%20dise%C3%B1o%20b%C3%A1sico",
             ctaGradient: "from-[#f6f38c] to-[#f9b919]", // gradiente del botón
@@ -37,7 +47,7 @@ function App() {
             imgMobile: isUSA ? "/usa/estandar.jpg" : "/estandar.jpg",
             imgDesktop: isUSA ? "/usa/estandar_desktop.jpg" : "/estandar_desktop.jpg",
             imgAlt: "Workshop Ads 360",
-            ctaText: "CONTACTAR A REALPE",
+            ctaText: "QUIERO EL ESTANDAR",
             ctaHref:
                 "https://wa.me/573168524218?text=Hola%20Realpe!%20Estoy%20interesad%40%20en%20el%20paquete%20de%20dise%C3%B1o%20est%C3%A1ndar",
             ctaGradient: "from-[#c18cf6] to-[#321c43]",
@@ -54,7 +64,7 @@ function App() {
             imgMobile: isUSA ? "/usa/premium.jpg" : "/premium.jpg",
             imgDesktop: isUSA ? "/usa/premium_desktop.jpg" : "/premium_desktop.jpg",
             imgAlt: "Workshop Ads 360",
-            ctaText: "CONTACTAR A REALPE",
+            ctaText: "QUIERO EL PREMIUM",
             ctaHref:
                 "https://wa.me/573168524218?text=Hola%20Realpe!%20Estoy%20interesad%40%20en%20el%20paquete%20de%20dise%C3%B1o%20premium",
             ctaGradient: "from-[#f6f38c] to-[#f9b919]",
@@ -67,6 +77,47 @@ function App() {
         },
     ];
 
+    const images_magnificent = [
+        "/img/clients/magnificent/1.jpg",
+        "/img/clients/magnificent/2.jpg",
+        "/img/clients/magnificent/3.jpg",
+        "/img/clients/magnificent/4.jpg",
+        "/img/clients/magnificent/5.jpg",
+        "/img/clients/magnificent/6.jpg",
+        "/img/clients/magnificent/7.jpg"
+    ];
+
+    const images_cleopatra = [
+        "/img/clients/cleopatra/1.jpg",
+        "/img/clients/cleopatra/2.jpg",
+        "/img/clients/cleopatra/3.jpg",
+        "/img/clients/cleopatra/4.jpg",
+        "/img/clients/cleopatra/5.jpg",
+        "/img/clients/cleopatra/6.jpg",
+        "/img/clients/cleopatra/7.jpg"
+    ];
+
+    const images_axel = [
+        "/img/clients/axel/1.jpg",
+        "/img/clients/axel/2.jpg",
+        "/img/clients/axel/3.jpg",
+        "/img/clients/axel/4.jpg",
+        "/img/clients/axel/5.jpg",
+        "/img/clients/axel/6.jpg",
+        "/img/clients/axel/7.jpg"
+    ];
+
+    const images_aviare = [
+        "/img/clients/aviare/1.jpg",
+        "/img/clients/aviare/2.jpg",
+        "/img/clients/aviare/3.jpg",
+        "/img/clients/aviare/4.jpg",
+        "/img/clients/aviare/5.jpg",
+        "/img/clients/aviare/6.jpg",
+        "/img/clients/aviare/7.jpg"
+    ];
+
+    // @ts-expect-error
     return (
         <div className="min-h-screen relative overflow-x-hidden">
 
@@ -80,6 +131,24 @@ function App() {
                             className="w-full h-auto object-cover"
                         />
                     </picture>
+
+                    <div className="w-full flex justify-center items-center mt-4">
+                        <VideoVertical />
+                    </div>
+
+                    <div className="w-full flex justify-center items-center py-5">
+                        <LiquidWhatsappButton
+                            ctaHref={"#"}
+                            ctaText={"VER PAQUETES"}
+                            ctaGradient={"from-[#f6f38c] to-[#f9b919]"}
+                            startColor="#25D366"
+                            endColor="#128C7E"
+                            buttonClassName={"text-base text-[#321c43] md:text-lg"}
+                            textColor={"text-[#321c43]"}
+                            showWhatsappIcon={false}
+                            onClick={scrollToPremium}
+                        />
+                    </div>
 
                     <div className="container mx-auto text-center text-white relative">
                         <picture>
@@ -98,7 +167,7 @@ function App() {
                     </div>
                 </header>
 
-                <HeroGroup items={heroes}/>
+                <HeroGroup items={heroes} premiumRef={premiumRef} />
 
                 <section className="w-full ">
                     <ShortsCarousel
@@ -106,6 +175,35 @@ function App() {
                         mobileWidthClass="w-[78%]"
                         mobileMaxWidthClass="max-w-[360px]"
                     />
+                </section>
+
+                <section className="w-full py-16">
+                    <div className="flex flex-col items-center gap-10">
+
+                        <div className="text-center max-w-2xl">
+                            <h2 className="text-3xl md:text-5xl font-bold text-black">
+                                Marcas que se sienten, se recuerdan y venden
+                            </h2>
+                        </div>
+                        <SlideStackImage images={images_magnificent} />
+                    </div>
+                </section>
+
+                <section className="w-full py-16">
+                    <div className="flex flex-col items-center gap-10">
+                        <SlideStackImage images={images_cleopatra} />
+                    </div>
+
+                </section><section className="w-full py-16">
+                    <div className="flex flex-col items-center gap-10">
+                        <SlideStackImage images={images_axel} />
+                    </div>
+                </section>
+
+                <section className="w-full py-16">
+                    <div className="flex flex-col items-center gap-10">
+                        <SlideStackImage images={images_aviare} />
+                    </div>
                 </section>
 
                 {/* Footer */}
