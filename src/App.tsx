@@ -5,8 +5,7 @@ import HeroGroup from "./Components/HeroGroup";
 import VideoVertical from "./Components/VideoVertical";
 import React, {useRef} from "react";
 import LiquidWhatsappButton from "./Components/LiquidWhatsappButton";
-// @ts-ignore
-import SlideStackImage from "./components/SlideStackImage";
+import SlideStackImage from './Components/SlideStackImage';
 
 // @ts-ignore
 function App() {
